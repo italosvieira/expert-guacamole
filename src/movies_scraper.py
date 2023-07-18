@@ -10,24 +10,23 @@ def run() -> None:
 
     for i, j in movies_data_frame.iterrows():
         link = f'https://en.wikipedia.org{j[0][1]}'
-        j[0] = j[0][0]
-        j[1] = j[1][0]
+        movies_data_frame.iat[i, 0] = j[0][0]
+        movies_data_frame.iat[i, 1] = j[1][0]
 
         try:
-            all_movie_data = pd.read_html(link, match=j[0])
+            all_movie_data = pd.read_html(link, match=j[0][0])
 
             for entry in all_movie_data[0].values:
                 if entry[0] == 'Directed by':
-                    j[2] = entry[1]
+                    movies_data_frame.iat[i, 2] = entry[1]
 
                 if entry[0] == 'Production company':
-                    j[3] = entry[1]
+                    movies_data_frame.iat[i, 3] = entry[1]
 
                 if entry[0] == 'Budget':
-                    j[3] = entry[1]
-            
+                    movies_data_frame.iat[i, 4] = entry[1]
         except:
-            print(f"Cant load movie: {j[0]}")
+            print(f"Cant load movie: {j[0][0]}")
 
     movies_data_frame.to_csv('data.csv', sep='\t', encoding='utf-8')
     

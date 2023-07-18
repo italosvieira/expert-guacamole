@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "name": "Start",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/__main__.py",
+            "console": "integratedTerminal"
+        }
+    ]
+}

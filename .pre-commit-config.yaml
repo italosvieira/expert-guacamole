@@ -1,0 +1,8 @@
+repos:
+  - repo: local
+    hooks:
+      - id: pre_commit
+        name: Pre Commit
+        language: system
+        pass_filenames: false
+        entry: poetry run task pre_commit
